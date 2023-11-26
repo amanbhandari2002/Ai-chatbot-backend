@@ -8,7 +8,7 @@ import cors from "cors"
 
 config();
 const app=express();
-app.use(cors({origin:"http://localhost:5173",credentials:true}))
+app.use(cors({origin:"https://aigptbotlic.netlify.app",credentials:true}))
 app.use(cookieParser(process.env.COOKIE_SECURITY,))
 app.use(express.json());
 app.use(morgan('dev'))
@@ -19,6 +19,6 @@ app.use(bodyParser.json());
 
 
 app.use("/api/v1",appRouter)
-console.log("testtt")
+
 
 export default app;

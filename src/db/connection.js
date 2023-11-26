@@ -10,6 +10,7 @@ async function connectToDB() {
        
     }
     catch (err) {
+        console.log(process.env.MONGODB_URL)
         throw new Error("cannot connect");
     }
 }
