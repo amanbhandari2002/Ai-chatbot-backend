@@ -27,7 +27,7 @@ const signUp=async (req,res)=>{
         if(existingUser){
             return res.status(422).json({"error":"user already exist"});
         }
-        res.clearCookie("auth_token", {httpOnly:true, signed:true,path:"/",domain:"aibotbackend.onrender"})
+        res.clearCookie("auth_token", {httpOnly:true, signed:true,path:"/",domain:"aibotbackend"})
         const hashPassowrd= await hash(password,10);
 
         const user = new User({name,email,password:hashPassowrd});
@@ -38,7 +38,7 @@ const signUp=async (req,res)=>{
     var date = expiretime.getDate();
     var expireTime = date + 7;
     expiretime.setDate(expireTime);
-    res.cookie("auth_token",token,{path:'/',httpOnly:true, signed:true,expires:expiretime,domain:"aibotbackend.onrender"})
+    res.cookie("auth_token",token,{path:'/',httpOnly:true, signed:true,expires:expiretime,domain:"aibotbackend"})
 
     return res.status(200).json({"message":"OK",user,email})
     }
@@ -59,7 +59,7 @@ const login=async (req,res)=> {
         return res.status(404).json({"error":"user not registered"})
     }
 
-    res.clearCookie("auth_token", {httpOnly:true, signed:true,path:"/",domain:"aibotbackend.onrender"})
+    res.clearCookie("auth_token", {httpOnly:true, signed:true,path:"/",domain:"aibotbackend"})
 
     const verifyPassword= await compare(password,user.password)
     if(verifyPassword==false){
@@ -71,13 +71,13 @@ const login=async (req,res)=> {
     var date = expiretime.getDate();
     var expireTime = date + 7;
     expiretime.setDate(expireTime);
-    res.cookie("auth_token",token,{path:'/',httpOnly:true, signed:true,expires:expiretime,domain:"aibotbackend.onrender"})
+    res.cookie("auth_token",token,{path:'/',httpOnly:true, signed:true,expires:expiretime,domain:"aibotbackend"})
     return res.status(200).json({"message":"found",email,user})
 }
 
 
 const logout=async (req,res)=>{
-    res.clearCookie("auth_token", {httpOnly:true, signed:true,path:"/",domain:"aibotbackend.onrender"})
+    res.clearCookie("auth_token", {httpOnly:true, signed:true,path:"/",domain:"aibotbackend"})
     res.status(200).json({"message":"logout successful"})
 
 }
