@@ -72,7 +72,7 @@ const login=async (req,res)=> {
     var date = expiretime.getDate();
     var expireTime = date + 7;
     expiretime.setDate(expireTime);
-    res.cookie("auth_token",token,{path:'/',httpOnly:true, signed:true,expires:expiretime,domain:".aibotbackend.onrender.com"})
+    res.cookie("auth_token",token,{httpOnly:true, signed:true,expires:expiretime})
     return res.status(200).json({"message":"found",email,user})
 }
 
