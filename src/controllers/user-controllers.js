@@ -65,7 +65,7 @@ const login=async (req,res)=> {
     if(verifyPassword==false){
         return res.status(400).json({"error":"password was incorect"})
     }
-
+    console.log('wtffffffff')
     const token= tokenGenerator(user._id.toString(),user.email,"7d")
     console.log(token)
     const expiretime = new Date();
