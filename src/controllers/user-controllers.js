@@ -67,11 +67,13 @@ const login=async (req,res)=> {
     }
 
     const token= tokenGenerator(user._id.toString(),user.email,"7d")
+    console.log(token)
     const expiretime = new Date();
     var date = expiretime.getDate();
     var expireTime = date + 7;
     expiretime.setDate(expireTime);
     res.cookie("auth_token",token,{path:'/',httpOnly:true, signed:true,expires:expiretime,domain:"aibotbackend"})
+    console.log(res.cookie)
     return res.status(200).json({"message":"found",email,user})
 }
 
