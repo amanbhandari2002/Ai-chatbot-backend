@@ -67,7 +67,7 @@ const login=async (req,res)=> {
     }
     console.log('wtffffffff')
     const token= tokenGenerator(user._id.toString(),user.email,"7d")
-    console.log(token)
+    console.log(token,'token')
     const expiretime = new Date();
     var date = expiretime.getDate();
     var expireTime = date + 7;
