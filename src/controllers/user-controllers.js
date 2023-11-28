@@ -59,7 +59,7 @@ const login=async (req,res)=> {
         return res.status(404).json({"error":"user not registered"})
     }
 
-    res.clearCookie("auth_token", {httpOnly:true, signed:true,path:"/",domain:".aibotbackend.onrender.com"})
+    // res.clearCookie("auth_token", {httpOnly:true, signed:true,path:"/",domain:".aibotbackend.onrender.com"})
 
     const verifyPassword= await compare(password,user.password)
     if(verifyPassword==false){
@@ -73,6 +73,7 @@ const login=async (req,res)=> {
     var expireTime = date + 7;
     expiretime.setDate(expireTime);
     res.cookie("auth_token",token,{httpOnly:true, signed:true,expires:expiretime})
+    console.log(req.cookies)
     return res.status(200).json({"message":"found",email,user})
 }
 
