@@ -72,7 +72,7 @@ const login=async (req,res)=> {
     var date = expiretime.getDate();
     var expireTime = date + 7;
     expiretime.setDate(expireTime);
-    res.cookie("auth_token",token,{httpOnly:true, signed:true,maxAge: 900000})
+    res.cookie("auth_token",token,{maxAge: 900000})
     console.log(req.signedCookies)
     return res.status(200).json({"message":"found",email,user})
 }
